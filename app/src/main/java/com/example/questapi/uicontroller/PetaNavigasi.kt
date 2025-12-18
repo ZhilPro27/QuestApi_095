@@ -6,8 +6,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.questapi.uicontroller.route.DestinasiDetail
 import com.example.questapi.uicontroller.route.DestinasiEntry
 import com.example.questapi.uicontroller.route.DestinasiHome
+import com.example.questapi.view.EntrySiswaScreen
+import com.example.questapi.view.HomeScreen
 
 @Composable
 fun DataSiswaApp(navController: NavHostController = rememberNavController(),
@@ -29,7 +32,8 @@ fun HostNavigasi(
                 },
                 navigateToItemUpdate = {
                     navController.navigate("${DestinasiDetail.route}/${it}")
-                })
+                },
+                modifier = modifier)
         }
         composable(DestinasiEntry.route){
             EntrySiswaScreen(navigateBack = {
