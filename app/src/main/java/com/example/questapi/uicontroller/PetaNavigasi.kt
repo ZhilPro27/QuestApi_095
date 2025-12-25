@@ -9,6 +9,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.questapi.uicontroller.route.DestinasiDetail
+import com.example.questapi.uicontroller.route.DestinasiEdit
 import com.example.questapi.uicontroller.route.DestinasiEntry
 import com.example.questapi.uicontroller.route.DestinasiHome
 import com.example.questapi.view.EntrySiswaScreen
@@ -49,7 +50,8 @@ fun HostNavigasi(
             DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.Route}/$it")},
                 navigateBack = {navController.navigate(DestinasiHome.route)})
         }
-        composable(DestinasiEdit.routeWithArgs, arguments = listOf(navArgument(DestinasiEdit.itemIdArg){
+        composable(
+            DestinasiEdit.routeWithArgs, arguments = listOf(navArgument(DestinasiEdit.itemIdArg){
             type = NavType.IntType
         })
         ){
