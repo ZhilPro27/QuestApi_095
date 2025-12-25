@@ -5,12 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.questapi.modeldata.DetailSiswa
+import androidx.lifecycle.viewModelScope
+import com.example.questapi.modeldata.DataSiswa
 import com.example.questapi.repositori.RepositoryDataSiswa
 import com.example.questapi.uicontroller.route.DestinasiDetail
+import kotlinx.coroutines.launch
+import okio.IOException
+import retrofit2.HttpException
 
 sealed interface StatusUiDetail{
-    data class Succes(val satusiswa: DetailSiswa): StatusUiDetail
+    data class Succes(val satusiswa: DataSiswa): StatusUiDetail
     object Error : StatusUiDetail
     object Loading : StatusUiDetail
 }
@@ -23,5 +27,18 @@ class DetailViewModel (
         private set
     init {
         getSatuSiswa()
+    }
+
+    fun getSatuSiswa(){
+        viewModelScope.launch {
+            statusUiDetail = StatusUiDetail.Loading
+            statusUiDetail = try {
+                StatusUiDetail.Succes(satusiswa = repositoryDataSiswa.getSatuSiswa(idSiswa))
+            } catch (e: IOException){
+                StatusUiDetail.Error
+            } catch (e: HttpException){
+                StatusUiDetail.Error
+            }
+        }
     }
 }
