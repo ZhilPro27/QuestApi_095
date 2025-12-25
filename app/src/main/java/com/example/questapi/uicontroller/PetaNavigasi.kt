@@ -12,6 +12,8 @@ import com.example.questapi.uicontroller.route.DestinasiDetail
 import com.example.questapi.uicontroller.route.DestinasiEdit
 import com.example.questapi.uicontroller.route.DestinasiEntry
 import com.example.questapi.uicontroller.route.DestinasiHome
+import com.example.questapi.view.DetailSiswaScreen
+import com.example.questapi.view.EditSiswaScreen
 import com.example.questapi.view.EntrySiswaScreen
 import com.example.questapi.view.HomeScreen
 
@@ -47,7 +49,7 @@ fun HostNavigasi(
             type = NavType.IntType
         })
         ) {
-            DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.Route}/$it")},
+            DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.route}/$it")},
                 navigateBack = {navController.navigate(DestinasiHome.route)})
         }
         composable(
