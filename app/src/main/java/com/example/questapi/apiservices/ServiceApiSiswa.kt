@@ -16,7 +16,7 @@ interface ServiceApiSiswa {
     suspend fun postSiswa(@Body dataSiswa: DataSiswa):retrofit2.Response<Void>
 
     @GET("baca1Teman.php/{id}")
-    suspend fun getStatusSiswa(@Query("id") id: Int): DataSiswa
+    suspend fun getSatuSiswa(@Query("id") id: Int): DataSiswa
 
     @PUT("editTM.php/{id}")
     suspend fun editStatusSiswa(@Query("id") id: Int, @Body dataSiswa: DataSiswa):retrofit2.Response<Void>
